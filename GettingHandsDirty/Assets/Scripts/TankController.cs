@@ -60,11 +60,11 @@ public class TankController : MonoBehaviour {
 
 		}
 		if (Input.GetKey (rotateLeftKey)) {
-			transform.Rotate (Vector3.up * rotateSpeed);
+			transform.Rotate (Vector3.up * -rotateSpeed);
 
 		}
 		if (Input.GetKey (rotateRightKey)) {
-			transform.Rotate (Vector3.up * -rotateSpeed);
+			transform.Rotate (Vector3.up * rotateSpeed);
 
 		}
 	}
