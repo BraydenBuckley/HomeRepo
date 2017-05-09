@@ -1,0 +1,15 @@
+Make a full area for the tanks to drive around
+
+Change the game to one camera looking down at the two tanks shooting 
+each other. which way is more fun?
+
+Look up Explosion force and make the bullets throw bodies around
+https://docs.unity3d.com/ScriptReference/Rigidbody.AddExplosionForce.html
+
+Make particles that activate at correct times
+
+Dust when they drive
+
+Explosions when the bullets hit
+
+large explosion when th tank dies
