@@ -12,17 +12,20 @@ public class PickUpTrigger : MonoBehaviour {
 	public List<GameObject> weapons = new List<GameObject> ();
 
 	void OnTriggerEnter(Collider other){
-//		Debug.Log (weaponToPickup);
-//		Destroy(this.gameObject);
-//		Destroy (weaponToPickup.gameObject);
-//		GameObject GO = Instantiate (weaponPrefab, weaoponSpawnPoint.position, weaoponSpawnPoint.transform.rotation) as GameObject;
-
-		ChangeWeapons ();
+		if (other.tag == "Player") {
+			ChangeWeapons ();
+			Destroy (this.gameObject);
+		}
 	}
 
 	public void ChangeWeapons (){
-		foreach (var weaponNumber in weapons) {
-			
-		}
+		if (weapons [weaponNumber]) {
+			weapons [0].SetActive (false);
+			weapons [1].SetActive (false);
+			weapons [2].SetActive (false);
+			weapons [3].SetActive (false);
+			weapons [weaponNumber].SetActive (true);
+						
+		} 
 	}
 }
