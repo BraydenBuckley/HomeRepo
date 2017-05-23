@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour {
 	public Rigidbody rigidbody;
 	public XboxController controller;
 
+	public GameObject bulletPrefab;
+	public Transform bulletSpawnPoint;
+	public float shootingTimer;
+	public float timeBetweenShots = 0.02f;
+
 	public Vector3 previousRotationDirection = Vector3.forward;
 
 	// Use this for initialization
@@ -25,8 +30,8 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
 		RotatePlayer ();
-//		FireGun ();
-		UseWeapon();
+		FireGun ();
+//		UseWeapon();
 
 	}
 
@@ -53,18 +58,18 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-//	private void FireGun(){
-//	
-//		if (XCI.GetAxis (XboxAxis.RightTrigger) > 0.15f) {
-//			if (Time.time - shootingTimer > timeBetweenShots) {
-//				GameObject GO = Instantiate (bulletPrefab, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
-//				GO.GetComponent<Rigidbody> ().AddForce (transform.forward * 20, ForceMode.Impulse);
-//				Destroy (GO, 3);
-//				shootingTimer = Time.time;
-//			}
-//		}
-//
-//	}
+	private void FireGun(){
+	
+		if (XCI.GetAxis (XboxAxis.RightTrigger) > 0.15f) {
+			if (Time.time - shootingTimer > timeBetweenShots) {
+				GameObject GO = Instantiate (bulletPrefab, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
+				GO.GetComponent<Rigidbody> ().AddForce (transform.forward * 20, ForceMode.Impulse);
+				Destroy (GO, 3);
+				shootingTimer = Time.time;
+			}
+		}
+
+	}
 
 	private void MovePlayer(){
 	
@@ -77,11 +82,11 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	private void UseWeapon(){
-		if (XCI.GetAxis (XboxAxis.RightTrigger) > 0.15f) {
-		
-		}
-	}
+//	private void UseWeapon(){
+//		if (XCI.GetAxis (XboxAxis.RightTrigger) > 0.15f) {
+//		
+//		}
+//	}
 		
 				
 }

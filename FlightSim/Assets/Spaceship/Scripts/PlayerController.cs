@@ -18,9 +18,11 @@ public class PlayerController : MonoBehaviour {
 
 	//Bullet variables
 	public GameObject bulletPrefab;
+	public GameObject minePrefab;
 	public float bulletSpeed = 20;
 	public Transform bulletSpawnPoint;
 	public Transform bulletSpawnPoint1;
+	public Transform backWeapon;
 	public GameObject ship;
 
 	// Use this for initialization
@@ -40,12 +42,12 @@ public class PlayerController : MonoBehaviour {
 		CheckPlayerPosition (transform.position.x, -500f, 500f);
 		CheckPlayerPosition (transform.position.z, -500f, 500f);
 
-		if (Input.GetKeyDown (KeyCode.Mouse0) && Input.GetKey (KeyCode.LeftShift)) {
+		if (Input.GetKey (KeyCode.Mouse0) && Input.GetKey (KeyCode.LeftShift)) {
 
-			GameObject GO = Instantiate (bulletPrefab, bulletSpawnPoint.position, ship.transform.rotation) as GameObject;
-			GO.GetComponent<Rigidbody> ().AddForce (ship.transform.forward * bulletSpeed, ForceMode.Impulse);
+			GameObject GO2 = Instantiate (minePrefab, backWeapon.position, ship.transform.rotation) as GameObject;
+			GO2.GetComponent<Rigidbody> ().AddForce (ship.transform.forward, ForceMode.Impulse);
 		
-		}else{
+		}else if (Input.GetKey (KeyCode.Mouse0)){
 			
 			GameObject GO = Instantiate (bulletPrefab, bulletSpawnPoint.position, ship.transform.rotation) as GameObject;
 			GO.GetComponent<Rigidbody> ().AddForce (ship.transform.forward * bulletSpeed, ForceMode.Impulse);
@@ -106,11 +108,11 @@ public class PlayerController : MonoBehaviour {
 //
 //		}
 	}
-	void OnCollisionEnter(){
-		ResetPlayer ();
-
-		//This code reseys the players speed and angular speed
-		GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
-		GetComponent<Rigidbody> ().velocity = Vector3.zero;
-	}
+//	void OnCollisionEnter(){
+//		ResetPlayer ();
+//
+//		//This code reseys the players speed and angular speed
+//		GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
+//		GetComponent<Rigidbody> ().velocity = Vector3.zero;
+//	}
 }

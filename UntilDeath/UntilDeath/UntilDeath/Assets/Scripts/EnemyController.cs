@@ -16,6 +16,10 @@ public class EnemyController : MonoBehaviour {
 	public GameObject player;
 	public NavMeshAgent navAgent;
 
+	public GameObject ZombieDeath;
+
+	public float health;
+
 	// Use this for initialization
 	void Start () {
 
@@ -23,6 +27,15 @@ public class EnemyController : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player");
 		navAgent = GetComponent<NavMeshAgent> ();
 
+	}
+
+	public void TakeDamage(float damage){
+		health = health - damage;
+		if (health <= 0) {
+			GameObject death = Instantiate (ZombieDeath, this.gameObject.transform.position, Quaternion.identity);
+			Destroy (this.gameObject);
+			Destroy (death, 2);
+		}
 	}
 	
 	// Update is called once per frame
