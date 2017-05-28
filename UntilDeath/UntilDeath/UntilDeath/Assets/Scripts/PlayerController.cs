@@ -16,6 +16,13 @@ public class PlayerController : MonoBehaviour {
 	public Transform bulletSpawnPoint;
 	public float shootingTimer;
 	public float timeBetweenShots = 0.02f;
+	public int ammoAmount = 20;
+
+	public int weaponReference;
+	public List<GameObject> weapons = new List<GameObject> ();
+	public GameObject currentWeapon;
+	//public GameObject testPickup;
+	//private GameObject pickupHit;
 
 	public Vector3 previousRotationDirection = Vector3.forward;
 
@@ -32,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 		RotatePlayer ();
 		FireGun ();
 //		UseWeapon();
-
+		weaponReference= PickUpTrigger().weaponNumber;
 	}
 
 	private void RotatePlayer (){
@@ -62,10 +69,17 @@ public class PlayerController : MonoBehaviour {
 	
 		if (XCI.GetAxis (XboxAxis.RightTrigger) > 0.15f) {
 			if (Time.time - shootingTimer > timeBetweenShots) {
-				GameObject GO = Instantiate (bulletPrefab, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
-				GO.GetComponent<Rigidbody> ().AddForce (transform.forward * 20, ForceMode.Impulse);
-				Destroy (GO, 3);
-				shootingTimer = Time.time;
+				if (ammoAmount > 0) {
+					GameObject GO = Instantiate (bulletPrefab, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
+					GO.GetComponent<Rigidbody> ().AddForce (transform.forward * 20, ForceMode.Impulse);
+					Destroy (GO, 3);
+					shootingTimer = Time.time;
+					ammoAmount = ammoAmount - 1;
+				} else {
+					GameObject DROP = Instantiate (currentWeapon, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
+					DROP.GetComponent<Rigidbody> ().AddForce (transform.forward * 20, ForceMode.Impulse);
+					Destroy (DROP, 3);
+				}
 			}
 		}
 
@@ -81,12 +95,25 @@ public class PlayerController : MonoBehaviour {
 			rigidbody.velocity = rigidbody.velocity.normalized * maxSpeed;
 		}
 	}
+		
 
-//	private void UseWeapon(){
-//		if (XCI.GetAxis (XboxAxis.RightTrigger) > 0.15f) {
-//		
-//		}
-//	}
+	public void OnTriggerEnter(Collider other){
+		if (other.tag == "Pickup") {
+			ChangeWeapons ();
+			//Destroy (this.gameObject);
+		}
+	}
+
+	public void ChangeWeapons (){
+		if (weapons [weaponReference]) {
+			weapons [0].SetActive (false);
+			weapons [1].SetActive (false);
+			weapons [2].SetActive (false);
+			weapons [3].SetActive (false);
+			weapons [weaponReference].SetActive (true);
+			weapons [weaponReference] = currentWeapon;
+		} 
+	}
 		
 				
 }
