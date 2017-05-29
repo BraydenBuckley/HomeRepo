@@ -35,6 +35,7 @@ public class EnemyController : MonoBehaviour {
 			GameObject death = Instantiate (ZombieDeath, this.gameObject.transform.position, Quaternion.identity);
 			Destroy (this.gameObject);
 			Destroy (death, 2);
+			//UpdateCounter ();
 		}
 	}
 	
@@ -52,4 +53,5 @@ public class EnemyController : MonoBehaviour {
 //		}
 		
 	}
+		
 }
