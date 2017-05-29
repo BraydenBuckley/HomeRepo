@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour {
 	public float damage = 1;
 
 	void OnTriggerEnter(Collider other){
-		if (other.tag == "Enemy") {
+		if (other.tag == "Enemy" || other.tag=="LargeEnemy") {
 			GameObject blood = Instantiate (bloodSplatter, this.gameObject.transform.position, Quaternion.identity);
 			other.GetComponent<EnemyController>().TakeDamage(damage);
 			Destroy (this.gameObject);

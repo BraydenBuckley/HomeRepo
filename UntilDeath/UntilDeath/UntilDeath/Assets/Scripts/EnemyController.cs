@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour {
 	public float attackRange = 1;
 	public GameObject player;
 	public NavMeshAgent navAgent;
+	public GameObject normalZombie;
 
 	public GameObject ZombieDeath;
 
@@ -30,12 +31,27 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	public void TakeDamage(float damage){
+//		health = health - damage;
+//		if (health <= 0) {
+//			GameObject death = Instantiate (ZombieDeath, this.gameObject.transform.position, Quaternion.identity);
+//			Destroy (this.gameObject);
+//			Destroy (death, 2);
+//			//UpdateCounter ();
+//		}
 		health = health - damage;
 		if (health <= 0) {
+			if(this.gameObject.tag==("LargeZombie")){
+				Instantiate (normalZombie, this.gameObject.transform.position, Quaternion.identity);
+				Instantiate (normalZombie, this.gameObject.transform.position, Quaternion.identity);
+				GameObject death = Instantiate (ZombieDeath, this.gameObject.transform.position, Quaternion.identity);
+				Destroy (this.gameObject);
+				Destroy (death, 2);
+			} else{
 			GameObject death = Instantiate (ZombieDeath, this.gameObject.transform.position, Quaternion.identity);
 			Destroy (this.gameObject);
 			Destroy (death, 2);
 			//UpdateCounter ();
+			}
 		}
 	}
 	

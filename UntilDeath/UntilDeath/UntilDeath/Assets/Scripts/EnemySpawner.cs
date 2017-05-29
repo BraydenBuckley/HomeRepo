@@ -9,20 +9,15 @@ public class EnemySpawner : MonoBehaviour {
 	public float timeBetweenSpawns = 5;
 	public float spawningTimer;
 
-	public int waveZombieAmount;
-	public int waveCounter;
-	public int zombiesToKill=5;
+	public int waveZombieAmount=1;
+	public int waveCounter=1;
 	public int totalEnemies;
 
-	public float timeBetweenWaves;
+	public float timeBetweenWaves=5f;
 	public float waveTimer;
 	// Use this for initialization
 	void Start () {
-		waveCounter = 1;
-		timeBetweenWaves = 5f;
-		waveZombieAmount = 1;
-		//EnemyController.UpdateZombieCounter (zombiesToKill);
-		//EnemyController.UpdateZombieCounter(zombiesToKill);
+
 	}
 	
 	// Update is called once per frame
@@ -47,6 +42,8 @@ public class EnemySpawner : MonoBehaviour {
 				waveZombieAmount += 5;
 				waveCounter++;
 				waveTimer = Time.time;
+				timeBetweenWaves += 5;
+				Debug.Log (waveCounter + "Finished");
 			}
 		}
 //		for (int i = 0; i < waveZombieAmount; i++) {
