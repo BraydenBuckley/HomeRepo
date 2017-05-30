@@ -17,6 +17,8 @@ public class EnemySpawner : MonoBehaviour {
 	public float timeBetweenWaves=5f;
 	public float waveTimer;
 
+	public bool isDead=false;
+
 	public Text waveText;
 	// Use this for initialization
 	void Awake () {
@@ -26,16 +28,25 @@ public class EnemySpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		StartWave ();
+		if(FindObjectOfType<PlayerController>().health==0){
+				isDead = true;
+			}
+
+
 	}
 
 	public void StartWave(){
 		Transform spawnPointToUse = null;
 		GameObject zombieToSpawn = null;
+		if (isDead) {
+			return;
+		}
 		if (Time.time - spawningTimer > timeBetweenSpawns && totalEnemies < waveZombieAmount) {
 			spawnPointToUse = spawnPointsList [Random.Range (0, spawnPointsList.Count)]; 
 			zombieToSpawn = zombieTypeList [Random.Range (0, zombieTypeList.Count)]; 
 			Instantiate (zombieToSpawn, spawnPointToUse.transform.position, Quaternion.identity); 
 			spawningTimer = Time.time; 
+			waveTimer = Time.time;
 			totalEnemies++;
 		} 
 

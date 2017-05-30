@@ -19,10 +19,6 @@ public class PlayerController : MonoBehaviour {
 	public float timeBetweenShots = 0.02f;
 	public int ammoAmount = 20;
 
-	public float flashSpeed = 5f;
-	public Image damageImage;
-	public Color flashColour = new Color(1f,0f,0f,0.1f);
-
 	public Slider healthSlider;
 
 	public Vector3 previousRotationDirection = Vector3.forward;
@@ -38,9 +34,11 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (health != 0) {
+			RotatePlayer ();
+		}
 
-		RotatePlayer ();
-		FireGun ();
+		//FireGun ();
 //		UseWeapon();
 	}
 
@@ -62,44 +60,49 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-	
-		MovePlayer ();
-
-	}
-
-	private void FireGun(){
-	
-		if (XCI.GetAxis (XboxAxis.RightTrigger) > 0.15f) {
-			if (Time.time - shootingTimer > timeBetweenShots) {
-				//if (ammoAmount > 0) {
-					GameObject GO = Instantiate (bulletPrefab, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
-					GO.GetComponent<Rigidbody> ().AddForce (transform.forward * 20, ForceMode.Impulse);
-					Destroy (GO, 3);
-					shootingTimer = Time.time;
-					//ammoAmount = ammoAmount - 1;
-				//}
-			}
+		if (health != 0) {
+			MovePlayer ();
 		}
 
 	}
 
-	private void MovePlayer(){
-	
+//	private void FireGun(){
+//		if (XCI.GetAxis (XboxAxis.RightTrigger) > 0.15f) {
+//			if (Time.time - shootingTimer > timeBetweenShots) {
+//				//if (ammoAmount > 0) {
+//					GameObject GO = Instantiate (bulletPrefab, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
+//					GO.GetComponent<Rigidbody> ().AddForce (transform.forward * 20, ForceMode.Impulse);
+//					Destroy (GO, 3);
+//					shootingTimer = Time.time;
+//					//ammoAmount = ammoAmount - 1;
+//			}
+//		}
+
+	//}
+
+	private void MovePlayer(){		
 		float axisX = XCI.GetAxis (XboxAxis.LeftStickX, controller);
 		float axisZ = XCI.GetAxis (XboxAxis.LeftStickY, controller);
 		Vector3 movement = new Vector3 (axisX, 0, axisZ);
 		rigidbody.AddForce (movement * movementSpeed);
-		if (rigidbody.velocity.magnitude > maxSpeed) {
-			rigidbody.velocity = rigidbody.velocity.normalized * maxSpeed;
+			if (rigidbody.velocity.magnitude > maxSpeed) {
+				rigidbody.velocity = rigidbody.velocity.normalized * maxSpeed;
+
 		}
 	}
 
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Enemy" || other.tag == "LargeEnemy") {
-			health = health - other.GetComponent<EnemyController> ().damage;
-			healthSlider.value = health;
-			Debug.Log (health);
-			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+			if (health <= 0) {
+				maxSpeed = 0;
+				movementSpeed = 0;
+				return;
+			} else {
+				health = health - other.GetComponent<EnemyController> ().damage;
+				healthSlider.value = health;
+				Debug.Log (health);
+			}
+
 		}
 	}	
 }

@@ -66,6 +66,19 @@ public class EnemyController : MonoBehaviour {
 			navAgent.destination = player.transform.position;
 			transform.LookAt (player.transform.position);
 		}
+		if (health <= 0) {
+			if (this.gameObject.tag == ("LargeEnemy")) {
+				Instantiate (normalZombie, normZomSpawn.transform.position, Quaternion.identity);
+				Instantiate (normalZombie, normZomSpawn2.transform.position, Quaternion.identity);
+				GameObject death = Instantiate (ZombieDeath, this.gameObject.transform.position, Quaternion.identity);
+				Destroy (this.gameObject);
+				Destroy (death, 2);
+			} else {
+				GameObject death = Instantiate (ZombieDeath, this.gameObject.transform.position, Quaternion.identity);
+				Destroy (this.gameObject);
+				Destroy (death, 2);
+			} 
+		}
 
 //		if (Vector3.Distance (player.position, myTransform.position) > attackRange) {
 //			transform.LookAt (player.position);
