@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour {
 
@@ -15,9 +16,11 @@ public class EnemySpawner : MonoBehaviour {
 
 	public float timeBetweenWaves=5f;
 	public float waveTimer;
-	// Use this for initialization
-	void Start () {
 
+	public Text waveText;
+	// Use this for initialization
+	void Awake () {
+		waveText.text = waveCounter.ToString();
 	}
 	
 	// Update is called once per frame
@@ -42,35 +45,11 @@ public class EnemySpawner : MonoBehaviour {
 				waveZombieAmount += 5;
 				waveCounter++;
 				waveTimer = Time.time;
-				timeBetweenWaves += 5;
+				timeBetweenWaves += 2;
+				waveText.text = waveCounter.ToString();
 				Debug.Log (waveCounter + "Finished");
+
 			}
 		}
-//		for (int i = 0; i < waveZombieAmount; i++) {
-//			//SpawnEnemy ();
-//			Transform spawnPointToUse = null;
-//			GameObject zombieToSpawn = null;
-//			if (Time.time - spawningTimer > timeBetweenSpawns) {
-//				spawnPointToUse = spawnPointsList [Random.Range (0, spawnPointsList.Count)];
-//				zombieToSpawn = zombieTypeList [Random.Range (0, zombieTypeList.Count)];
-//				Instantiate (zombieToSpawn, spawnPointToUse.transform.position, Quaternion.identity);
-//				spawningTimer = Time.time;
-//			
-//		}
-
-
-//	public void SpawnEnemy(){
-//		Transform spawnPointToUse = null;
-//		GameObject zombieToSpawn = null;
-//		//int randomSpawnPoint = Random.Range (0, spawnPoints);
-//		if (Time.time - spawningTimer > timeBetweenSpawns) {
-//			spawnPointToUse = spawnPointsList [Random.Range (0, spawnPointsList.Count)];
-//			zombieToSpawn = zombieTypeList [Random.Range (0, zombieTypeList.Count)];
-//			Instantiate (zombieToSpawn, spawnPointToUse.transform.position, Quaternion.identity);
-//			spawningTimer = Time.time;
-//		}
-
-
-
 	}
 }

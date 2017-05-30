@@ -12,14 +12,18 @@ public class EnemyController : MonoBehaviour {
 //	public int attackDamage = 1;
 //	public float timeBetweenAttacks;
 
-	public float attackRange = 1;
+	public float attackRange = 3;
 	public GameObject player;
 	public NavMeshAgent navAgent;
 	public GameObject normalZombie;
 
+	public Transform normZomSpawn;
+	public Transform normZomSpawn2;
+
 	public GameObject ZombieDeath;
 
 	public float health;
+	public int damage;
 
 	// Use this for initialization
 	void Start () {
@@ -40,9 +44,9 @@ public class EnemyController : MonoBehaviour {
 //		}
 		health = health - damage;
 		if (health <= 0) {
-			if(this.gameObject.tag==("LargeZombie")){
-				Instantiate (normalZombie, this.gameObject.transform.position, Quaternion.identity);
-				Instantiate (normalZombie, this.gameObject.transform.position, Quaternion.identity);
+			if(this.gameObject.tag==("LargeEnemy")){
+				Instantiate (normalZombie, normZomSpawn.transform.position, Quaternion.identity);
+				Instantiate (normalZombie, normZomSpawn2.transform.position, Quaternion.identity);
 				GameObject death = Instantiate (ZombieDeath, this.gameObject.transform.position, Quaternion.identity);
 				Destroy (this.gameObject);
 				Destroy (death, 2);

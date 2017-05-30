@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using XboxCtrlrInput;
 
 public class PlayerController : MonoBehaviour {
@@ -18,12 +19,20 @@ public class PlayerController : MonoBehaviour {
 	public float timeBetweenShots = 0.02f;
 	public int ammoAmount = 20;
 
+	public float flashSpeed = 5f;
+	public Image damageImage;
+	public Color flashColour = new Color(1f,0f,0f,0.1f);
+
+	public Slider healthSlider;
+
 	public Vector3 previousRotationDirection = Vector3.forward;
+	public int health = 10;
 
 	// Use this for initialization
 	void Start () {
 
 		rigidbody = GetComponent<Rigidbody> ();
+		healthSlider.value = health;
 
 	}
 	
@@ -85,24 +94,12 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-
-//	public void OnTriggerEnter(Collider other){
-//		if (other.tag == "Pickup") {
-//			ChangeWeapons ();
-//			//Destroy (this.gameObject);
-//		}
-//	}
-
-//	public void ChangeWeapons (){
-//		if (weapons [weaponReference]) {
-//			weapons [0].SetActive (false);
-//			weapons [1].SetActive (false);
-//			weapons [2].SetActive (false);
-//			weapons [3].SetActive (false);
-//			weapons [weaponReference].SetActive (true);
-//			weapons [weaponReference] = currentWeapon;
-//		} 
-//	}
-		
-				
+	void OnTriggerEnter(Collider other){
+		if (other.tag == "Enemy" || other.tag == "LargeEnemy") {
+			health = health - other.GetComponent<EnemyController> ().damage;
+			healthSlider.value = health;
+			Debug.Log (health);
+			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+		}
+	}	
 }
