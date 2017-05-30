@@ -5,40 +5,49 @@ using XboxCtrlrInput;
 
 public class GunScript : MonoBehaviour {
 
+	//Holds the different gun stat variables
 	public int maxAmmo;
 	public float fireRate;
 	public int currentAmmo;
 	public float reloadTime;
 	public float shootingTimer;
 	public int clipSize;
-	public int damage;
-	public int health;
-
+	//Holds the bullet prefab and spawn point
 	public GameObject bulletPrefab;
 	public Transform bulletSpawnPoint;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
+	//--------------------------------------------------------------------------------------
+	//	Update()
+	// Runs before each frame. Checks if player is alive, if so runs fire gun function
+	//
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void Update () {
-		if (FindObjectOfType<PlayerController> ().health != 0) {
+		if (FindObjectOfType<PlayerController> ().health > 0) {
 			FireGun ();
 		}
 	}
+	//--------------------------------------------------------------------------------------
+	//	FireGun()
+	// Gets called every frame the player is alive. Gets right trigger input and creates a bullet
+	// from the set points
+	//
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	private void FireGun(){
 
 		if (XCI.GetAxis (XboxAxis.RightTrigger) > 0.15f) {
 			if (Time.time - shootingTimer > fireRate) {
-				//if (ammoAmount > 0) {
 				GameObject GO = Instantiate (bulletPrefab, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
 				GO.GetComponent<Rigidbody> ().AddForce (transform.forward * 20, ForceMode.Impulse);
 				Destroy (GO, 3);
 				shootingTimer = Time.time;
-				//ammoAmount = ammoAmount - 1;
-				//}
 			}
 		}
 

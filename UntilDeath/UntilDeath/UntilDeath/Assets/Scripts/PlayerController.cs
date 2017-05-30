@@ -6,49 +6,77 @@ using XboxCtrlrInput;
 
 public class PlayerController : MonoBehaviour {
 
-	public List<GameObject> g = new List<GameObject> ();
+	//Controls movement speed of player
 	public float movementSpeed = 60;
 	public float maxSpeed = 5;
-
-	public Rigidbody rigidbody;
+	//Get the player rigidbody
+	public Rigidbody rb;
+	//Gets controller input
 	public XboxController controller;
 
-	public GameObject bulletPrefab;
-	public Transform bulletSpawnPoint;
-	public float shootingTimer;
-	public float timeBetweenShots = 0.02f;
-	public int ammoAmount = 20;
-
+	//Get UI health slider
 	public Slider healthSlider;
-
+	public GameObject uiCanvas;
+	public GameObject deathCanvas;
+	//Sets the previous rotation to vector forward
 	public Vector3 previousRotationDirection = Vector3.forward;
-	public int health = 10;
+	//Sets player health amount
+	public float health = 10;
+	//Players weapon types
+	public GameObject pistol;
+	public GameObject machineGun;
+	public GameObject sniper;
 
-	// Use this for initialization
+	//--------------------------------------------------------------------------------------
+	//	Start()
+	// Runs during initialisation. Gets player rigidbody and set the UI slider to link with health
+	//
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void Start () {
 
-		rigidbody = GetComponent<Rigidbody> ();
+		rb = GetComponent<Rigidbody> ();
 		healthSlider.value = health;
 
 	}
 	
-	// Update is called once per frame
+	//--------------------------------------------------------------------------------------
+	//	Update()
+	// Runs every frame. Checks if player is alive, if so runs RotatePlayer function
+	//
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void Update () {
-		if (health != 0) {
+		if (health > 0) {
 			RotatePlayer ();
 		}
 
-		//FireGun ();
-//		UseWeapon();
+		if (health <= 0) {
+			uiCanvas.SetActive (false);
+			deathCanvas.SetActive (true);
+		}
 	}
 
+	//--------------------------------------------------------------------------------------
+	//	RotatePlayer()
+	// Gets right stick input and rotates the player accordingly
+	//
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	private void RotatePlayer (){
 	
 		float rotateAxisX = XCI.GetAxis (XboxAxis.RightStickX, controller);
 		float rotateAxisZ = XCI.GetAxis (XboxAxis.RightStickY, controller);
 		Vector3 directionVector = new Vector3 (rotateAxisX, 0, rotateAxisZ);
-
-		//Check to see if the rigth thumbstick is not being used.
 
 		if (directionVector.magnitude < 0.1f) {
 			directionVector = previousRotationDirection;
@@ -59,38 +87,53 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	//--------------------------------------------------------------------------------------
+	//	FixedUpdate()
+	// Runs before physics caluculations. Checks is player is alive, if yes runs MovePlayer
+	//
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void FixedUpdate(){
-		if (health != 0) {
+		if (health > 0) {
 			MovePlayer ();
 		}
 
 	}
 
-//	private void FireGun(){
-//		if (XCI.GetAxis (XboxAxis.RightTrigger) > 0.15f) {
-//			if (Time.time - shootingTimer > timeBetweenShots) {
-//				//if (ammoAmount > 0) {
-//					GameObject GO = Instantiate (bulletPrefab, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
-//					GO.GetComponent<Rigidbody> ().AddForce (transform.forward * 20, ForceMode.Impulse);
-//					Destroy (GO, 3);
-//					shootingTimer = Time.time;
-//					//ammoAmount = ammoAmount - 1;
-//			}
-//		}
-
-	//}
-
+	//--------------------------------------------------------------------------------------
+	//	MovePlayer()
+	// Gets left stick input and moves the player in the direction of the stick at the 
+	// movement speed set
+	//
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	private void MovePlayer(){		
 		float axisX = XCI.GetAxis (XboxAxis.LeftStickX, controller);
 		float axisZ = XCI.GetAxis (XboxAxis.LeftStickY, controller);
 		Vector3 movement = new Vector3 (axisX, 0, axisZ);
-		rigidbody.AddForce (movement * movementSpeed);
-			if (rigidbody.velocity.magnitude > maxSpeed) {
-				rigidbody.velocity = rigidbody.velocity.normalized * maxSpeed;
+		rb.AddForce (movement * movementSpeed);
+			if (rb.velocity.magnitude > maxSpeed) {
+				rb.velocity = rb.velocity.normalized * maxSpeed;
 
 		}
 	}
 
+	//--------------------------------------------------------------------------------------
+	//	OnTriggerEnter()
+	// Trigger dtection. If the player collides with an enemy they take damage accordingly, 
+	// and if health equals 0 kill the player
+	//
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Enemy" || other.tag == "LargeEnemy") {
 			if (health <= 0) {
