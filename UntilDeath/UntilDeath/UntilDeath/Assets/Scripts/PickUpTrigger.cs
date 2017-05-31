@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickUpTrigger : MonoBehaviour {
 
@@ -35,12 +36,13 @@ public class PickUpTrigger : MonoBehaviour {
 	//--------------------------------------------------------------------------------------
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Player") {
-			if (gunList [gunReference])
+			if (gunList [gunReference]) {
 				gunList [0].SetActive (false);
 				gunList [1].SetActive (false);
 				gunList [2].SetActive (false);
 				gunList [gunReference].SetActive (true);
-			Destroy (this.gameObject);
+				Destroy (this.gameObject);
+			}
 		}
 	}
 }
