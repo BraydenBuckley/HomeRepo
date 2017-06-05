@@ -15,7 +15,7 @@ public class Drops : MonoBehaviour {
 		if (killCounter >= 20) {
 			killCounter = 0;
 			GameObject dropToSpawn = gunDropsList [Random.Range (0, gunDropsList.Count)]; 
-			Instantiate (dropToSpawn,dropLocation.transform.position, Quaternion.identity); 
+			Instantiate (dropToSpawn,dropLocation.transform.position, dropToSpawn.transform.rotation); 
 		}
 	}
 }
