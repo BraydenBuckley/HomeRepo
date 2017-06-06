@@ -26,6 +26,8 @@ public class Bullet : MonoBehaviour {
 				GameObject blood = Instantiate (bloodSplatter, this.gameObject.transform.position, Quaternion.identity);
 				other.GetComponent<EnemyController> ().TakeDamage (damage);
 				Destroy (blood, 1);
+				Destroy (this.gameObject, 0.2f);
+				Debug.Log ("Gone");
 			} else {
 				GameObject blood = Instantiate (bloodSplatter, this.gameObject.transform.position, Quaternion.identity);
 				other.GetComponent<EnemyController> ().TakeDamage (damage);

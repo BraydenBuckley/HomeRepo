@@ -45,7 +45,7 @@ public class GunScript : MonoBehaviour {
 		if (XCI.GetAxis (XboxAxis.RightTrigger) > 0.15f) {
 			if (Time.time - shootingTimer > fireRate) {
 				GameObject GO = Instantiate (bulletPrefab, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
-				GO.GetComponent<Rigidbody> ().AddForce (transform.forward * 20, ForceMode.Impulse);
+				GO.GetComponent<Rigidbody> ().AddForce (transform.forward * 30, ForceMode.Impulse);
 				Destroy (GO, 3);
 				shootingTimer = Time.time;
 			}
