@@ -1,0 +1,82 @@
+Initialize engine version: 5.5.1f1 (88d00a7498cd)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+    Driver:   21.21.13.7633
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\XInputDotNetPure.dll (this message is harmless)
+Loading C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\XInputDotNetPure.dll into Unity Child Domain
+- Completed reload, in  0.027 seconds
+Platform assembly: C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\s171035\Documents\SVN\HomeRepo\trunk\UntilDeath\UntilDeath\UntilDeath\Builds\BetaBuild_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.828575 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1b2c -> priority: 1 
+  Thread -> id: 1e08 -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.600262 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 1661.
+Total: 0.405612 ms (FindLiveObjects: 0.054612 ms CreateObjectMapping: 0.040390 ms MarkObjects: 0.294111 ms  DeleteObjects: 0.016497 ms)
+
+9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+5
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+-1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+2Finished
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.874939 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 1669.
+Total: 0.447425 ms (FindLiveObjects: 0.074523 ms CreateObjectMapping: 0.041243 ms MarkObjects: 0.313737 ms  DeleteObjects: 0.017635 ms)
+
