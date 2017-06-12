@@ -5,24 +5,42 @@ using UnityEngine.UI;
 
 public class Controller : MonoBehaviour {
 
+	//int for players heat
 	public int playerHeat;
+	//UI elements
 	public Slider heatBar;
+	public GameObject deadText;
+	//Bool to determine if player is at heat source
 	public bool isAtHeat;
+	//Timer variables
 	public float timeBetween;
 	public float heatTimer;
-	public GameObject deadText;
 
 
-	// Use this for initialization
+
+	//--------------------------------------------------------------------------------------
+	//	Start()
+	// Runs on inistialisation 
+	//
+	// Param:
+	//		Collider other - The collider of any objects that pass into this trigger
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void Start () {
 		heatBar.value = playerHeat;
 		isAtHeat = false;
 	}
-	
-	// Update is called once per frame
+	//--------------------------------------------------------------------------------------
+	//	Update()
+	// Runs every frame
+	//
+	// Param:
+	//		none
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void Update () {
-
-		//isAtHeat=FindObjectOfType<Trigger> ().atHeat;
 		if (playerHeat <= 0) {
 			return;
 		}
