@@ -64,7 +64,6 @@ public class EnemyController : MonoBehaviour {
 				FindObjectOfType<Drops> ().killCounter++;
 				Destroy (this.gameObject);
 				Destroy (death, 2);
-				Debug.Log (FindObjectOfType<Drops> ().killCounter);
 			}
 		}
 	}

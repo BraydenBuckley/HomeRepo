@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour {
 	public GameObject machineGun;
 	public GameObject sniper;
 
-	public GameObject playerDeath;
 	public Transform partSpawn;
 	public bool isDead = false;
 
@@ -130,7 +129,7 @@ public class PlayerController : MonoBehaviour {
 
 	//--------------------------------------------------------------------------------------
 	//	OnTriggerEnter()
-	// Trigger dtection. If the player collides with an enemy they take damage accordingly, 
+	// Trigger detection. If the player collides with an enemy they take damage accordingly, 
 	// and if health equals 0 kill the player
 	//
 	// Param:
@@ -146,8 +145,6 @@ public class PlayerController : MonoBehaviour {
 			if (health < 1) {
 				maxSpeed = 0;
 				movementSpeed = 0;
-				GameObject death = Instantiate (playerDeath, partSpawn.transform.position, Quaternion.identity);
-				death.transform.SetParent (partSpawn.transform);
 				isDead = true;
 				return;
 			} else {

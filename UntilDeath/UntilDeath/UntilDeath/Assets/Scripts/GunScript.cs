@@ -6,12 +6,8 @@ using XboxCtrlrInput;
 public class GunScript : MonoBehaviour {
 
 	//Holds the different gun stat variables
-	public int maxAmmo;
 	public float fireRate;
-	public int currentAmmo;
-	public float reloadTime;
 	public float shootingTimer;
-	public int clipSize;
 	//Holds the bullet prefab and spawn point
 	public GameObject bulletPrefab;
 	public Transform bulletSpawnPoint;

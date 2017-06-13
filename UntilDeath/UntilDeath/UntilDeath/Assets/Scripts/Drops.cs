@@ -9,9 +9,16 @@ public class Drops : MonoBehaviour {
 	public Transform dropLocation;
 
 	
-	// Update is called once per frame
+	//--------------------------------------------------------------------------------------
+	//	Update()
+	// Runs every frame. Constantly checks if the kill counter is 20 if so spawn a random gun and reset counter.
+	//
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void Update () {
-		//Debug.Log (killCounter);
 		if (killCounter >= 20) {
 			killCounter = 0;
 			GameObject dropToSpawn = gunDropsList [Random.Range (0, gunDropsList.Count)]; 
