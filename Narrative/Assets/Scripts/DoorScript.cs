@@ -15,18 +15,21 @@ public class DoorScript : MonoBehaviour {
 
 	void OnTriggerStay (Collider other){
 		if (other.tag == "Player") {
-
-			doorText.SetActive (true);
-
-			if (Input.GetKeyDown (KeyCode.E)) {
-				door.GetComponent<Animator> ().Play ("DoorOpen");
+			if (doorOpen == false) {
+				doorText.SetActive (true);
+				if (Input.GetKeyDown (KeyCode.E)) {
+					door.GetComponent<Animator> ().Play ("DoorOpen");
+					doorText.gameObject.SetActive (false);
+					doorOpen = true;
+				}
 			}
 		}
 	}
 
 	void OnTriggerExit( Collider other){
 		if (other.tag == "Player") {
-			doorText.SetActive (false);
+				doorText.SetActive (false);
+
 		}
 	}
 }
