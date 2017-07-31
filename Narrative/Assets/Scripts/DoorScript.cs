@@ -21,6 +21,7 @@ public class DoorScript : MonoBehaviour {
 					door.GetComponent<Animator> ().Play ("DoorOpen");
 					doorText.gameObject.SetActive (false);
 					doorOpen = true;
+					door.GetComponent<AudioSource> ().Play ();
 				}
 			}
 		}
