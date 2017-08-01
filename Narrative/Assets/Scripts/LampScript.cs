@@ -29,7 +29,7 @@ public class LampScript : MonoBehaviour {
 					lampText.SetActive (false);
 					sparkAudio.GetComponent<AudioSource> ().Pause ();
 					lightOff = true;
-					Invoke ("CryingDaughter", 1.5f);
+					Invoke ("CryingDaughter", 0.5f);
 				}
 			}
 		}

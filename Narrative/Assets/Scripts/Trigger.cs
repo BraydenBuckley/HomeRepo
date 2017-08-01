@@ -72,5 +72,6 @@ public class Trigger : MonoBehaviour {
 
 	public void EndGame(){
 		blackFade.GetComponent<Animator> ().Play ("FadeToBlack");
+		//Application.Quit ();
 	}
 }
